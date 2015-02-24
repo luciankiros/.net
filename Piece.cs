@@ -2,7 +2,8 @@ namespace Chess
 {
     internal enum Piece
     {
-        Empty,
-        Pawn
+        None,
+        Pawn,
+        Knight
     }
 }

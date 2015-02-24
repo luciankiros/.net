@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Chess
 {
     internal class Board
@@ -6,7 +8,7 @@ namespace Chess
         private const int BLACK_PAWN_INITIAL_RANK = 6;
 
         private readonly SquareInfo[,] _board = new SquareInfo[8, 8];
-        private readonly PawnRuleManager _pawnRuleManager;
+        private readonly Dictionary<Piece, RuleManager> _ruleManagers;
 
         public static Board CreateBoard()
         {
@@ -26,9 +28,11 @@ namespace Chess
 
         private Board()
         {
-            _pawnRuleManager = new PawnRuleManager(_board);
-
-           
+            _ruleManagers = new Dictionary<Piece, RuleManager>()
+            {
+                {Piece.Pawn, new PawnRuleManager(_board)},
+                {Piece.Knight, new KnightRuleManager(_board)}
+            };
         }
 
         public void Play(string move)
@@ -38,7 +42,10 @@ namespace Chess
             int targetFile = move[2] - 'A';
             int targetRank = move[3] - '1';
 
-            _pawnRuleManager.ApplyMove(originFile, originRank, targetFile, targetRank);
+            Piece movingPiece = _board[originFile, originRank].Piece;
+            var ruleManager = _ruleManagers[movingPiece];
+
+            ruleManager.ApplyMove(originFile, originRank, targetFile, targetRank);
         }
 
 

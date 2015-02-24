@@ -2,17 +2,16 @@ using System;
 
 namespace Chess
 {
-    internal class PawnRuleManager
+    internal class PawnRuleManager : RuleManager
     {
-        private readonly SquareInfo[,] _board;
 
         public PawnRuleManager(SquareInfo[,] board)
+            : base(board)
         {
-            _board = board;
         }
 
 
-        private bool IsLegalMove(int originFile, int originRank, int targetFile, int targetRank)
+        protected override bool IsLegalMove(int originFile, int originRank, int targetFile, int targetRank)
         {
             int direction = (int)_board[originFile, originRank].PieceColor;
             int deltaRank = direction * Math.Abs(targetRank - originRank);
@@ -28,25 +27,6 @@ namespace Chess
 
             return isLegalMove || canCaptureOnDiagonal;
         }
-        internal void ApplyMove(int originFile, int originRank, int targetFile, int targetRank)
-        {
 
-            if (IsLegalMove(originFile, originRank, targetFile, targetRank))
-            {
-                Move(originFile, originRank, targetFile, targetRank);
-            }
-          
-        }
-
-        private void Move(int originFile, int originRank, int targetFile, int targetRank)
-        {
-            var originalSquare = _board[originFile, originRank];
-
-            _board[originFile, originRank].Piece = Piece.Empty;
-            _board[originFile, originRank].PieceColor = PieceColor.None;
-
-            _board[targetFile, targetRank].Piece = originalSquare.Piece;
-            _board[targetFile, targetRank].PieceColor = originalSquare.PieceColor;
-        }
     }
 }

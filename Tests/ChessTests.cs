@@ -31,7 +31,7 @@ namespace Chess.Tests
         {
             Board board = Board.CreateBoard();
             SquareInfo emptySquare = board.GetSquareInfo(position);
-            Assert.AreEqual(emptySquare.Piece, Piece.Empty);
+            Assert.AreEqual(emptySquare.Piece, Piece.None);
         }
 
         [Category("Initialization")]
@@ -69,7 +69,7 @@ namespace Chess.Tests
             SquareInfo a2 = board.GetSquareInfo("A2");
 
             Assert.AreEqual(Piece.Pawn, a3.Piece);
-            Assert.AreEqual(Piece.Empty, a2.Piece);
+            Assert.AreEqual(Piece.None, a2.Piece);
         }
 
 
@@ -83,7 +83,7 @@ namespace Chess.Tests
             SquareInfo a2 = board.GetSquareInfo("A2");
 
             Assert.AreEqual(Piece.Pawn, a4.Piece);
-            Assert.AreEqual(Piece.Empty, a2.Piece);
+            Assert.AreEqual(Piece.None, a2.Piece);
         }
 
 
@@ -94,13 +94,13 @@ namespace Chess.Tests
         {
             Board board = Board.CreateBoard();
             board.PlacePiece(Piece.Pawn, PieceColor.White, "A4");
-            board.PlacePiece(Piece.Empty, PieceColor.None, "A2");
+            board.PlacePiece(Piece.None, PieceColor.None, "A2");
             board.Play("A4A2");
             SquareInfo a4 = board.GetSquareInfo("A4");
             SquareInfo a2 = board.GetSquareInfo("A2");
 
             Assert.AreEqual(Piece.Pawn, a4.Piece);
-            Assert.AreEqual(Piece.Empty, a2.Piece);
+            Assert.AreEqual(Piece.None, a2.Piece);
         }
 
         [Category("Pawn Rule")]
@@ -218,6 +218,141 @@ namespace Chess.Tests
 
             Assert.AreEqual(Piece.Pawn, b4.Piece);
             Assert.AreEqual(PieceColor.Black, b4.PieceColor);
+        }
+
+        [Category("Knight Rule")]
+        [Test]
+        public void Play_KnightD5E7_KnightFoundAtE7AndD5RemainsEmpty()
+        {
+            Board board = Board.CreateBoard();
+            board.PlacePiece(Piece.Knight, PieceColor.White, "D5");
+            board.Play("D5E7");
+            SquareInfo e7 = board.GetSquareInfo("E7");
+            SquareInfo d5 = board.GetSquareInfo("D5");
+
+            Assert.AreEqual(Piece.Knight, e7.Piece);
+            Assert.AreEqual(PieceColor.White, e7.PieceColor);
+            Assert.AreEqual(PieceColor.None, d5.PieceColor);
+        }
+
+        [Category("Knight Rule")]
+        [Test]
+        public void Play_KnightD5C7_KnightFoundAtC7AndD5RemainsEmpty()
+        {
+            Board board = Board.CreateBoard();
+            board.PlacePiece(Piece.Knight, PieceColor.White, "D5");
+            board.Play("D5C7");
+            SquareInfo c7 = board.GetSquareInfo("C7");
+            SquareInfo d5 = board.GetSquareInfo("D5");
+
+            Assert.AreEqual(Piece.Knight, c7.Piece);
+            Assert.AreEqual(PieceColor.White, c7.PieceColor);
+            Assert.AreEqual(PieceColor.None, d5.PieceColor);
+        } 
+
+        [Category("Knight Rule")]
+        [Test]
+        public void Play_KnightD5B6_KnightFoundAtB6AndD5RemainsEmpty()
+        {
+            Board board = Board.CreateBoard();
+            board.PlacePiece(Piece.Knight, PieceColor.White, "D5");
+            board.Play("D5B6");
+            SquareInfo b6 = board.GetSquareInfo("B6");
+            SquareInfo d5 = board.GetSquareInfo("D5");
+
+            Assert.AreEqual(Piece.Knight, b6.Piece);
+            Assert.AreEqual(PieceColor.White, b6.PieceColor);
+            Assert.AreEqual(PieceColor.None, d5.PieceColor);
+        }
+
+        [Category("Knight Rule")]
+        [Test]
+        public void Play_KnightD5B4_KnightFoundAtB4AndD5RemainsEmpty()
+        {
+            Board board = Board.CreateBoard();
+            board.PlacePiece(Piece.Knight, PieceColor.White, "D5");
+            board.Play("D5B4");
+            SquareInfo b4 = board.GetSquareInfo("B4");
+            SquareInfo d5 = board.GetSquareInfo("D5");
+
+            Assert.AreEqual(Piece.Knight, b4.Piece);
+            Assert.AreEqual(PieceColor.White, b4.PieceColor);
+            Assert.AreEqual(PieceColor.None, d5.PieceColor);
+        }
+
+        [Category("Knight Rule")]
+        [Test]
+        public void Play_KnightD5C3_KnightFoundAtC3AndD5RemainsEmpty()
+        {
+            Board board = Board.CreateBoard();
+            board.PlacePiece(Piece.Knight, PieceColor.White, "D5");
+            board.Play("D5C3");
+            SquareInfo c3 = board.GetSquareInfo("C3");
+            SquareInfo d5 = board.GetSquareInfo("D5");
+
+            Assert.AreEqual(Piece.Knight, c3.Piece);
+            Assert.AreEqual(PieceColor.White, c3.PieceColor);
+            Assert.AreEqual(PieceColor.None, d5.PieceColor);
+        }
+
+        [Category("Knight Rule")]
+        [Test]
+        public void Play_KnightD5E3_KnightFoundAtE3AndD5RemainsEmpty()
+        {
+            Board board = Board.CreateBoard();
+            board.PlacePiece(Piece.Knight, PieceColor.White, "D5");
+            board.Play("D5E3");
+            SquareInfo e4 = board.GetSquareInfo("E3");
+            SquareInfo d5 = board.GetSquareInfo("D5");
+
+            Assert.AreEqual(Piece.Knight, e4.Piece);
+            Assert.AreEqual(PieceColor.White, e4.PieceColor);
+            Assert.AreEqual(PieceColor.None, d5.PieceColor);
+        }
+
+        [Category("Knight Rule")]
+        [Test]
+        public void Play_KnightD5F4_KnightFoundAtF4AndD5RemainsEmpty()
+        {
+            Board board = Board.CreateBoard();
+            board.PlacePiece(Piece.Knight, PieceColor.White, "D5");
+            board.Play("D5F4");
+            SquareInfo f4 = board.GetSquareInfo("F4");
+            SquareInfo d5 = board.GetSquareInfo("D5");
+
+            Assert.AreEqual(Piece.Knight, f4.Piece);
+            Assert.AreEqual(PieceColor.White, f4.PieceColor);
+            Assert.AreEqual(PieceColor.None, d5.PieceColor);
+        }
+
+        [Category("Knight Rule")]
+        [Test]
+        public void Play_KnightD5F6_KnightFoundAtF6AndD5RemainsEmpty()
+        {
+            Board board = Board.CreateBoard();
+            board.PlacePiece(Piece.Knight, PieceColor.White, "D5");
+            board.Play("D5F6");
+            SquareInfo f6 = board.GetSquareInfo("F6");
+            SquareInfo d5 = board.GetSquareInfo("D5");
+
+            Assert.AreEqual(Piece.Knight, f6.Piece);
+            Assert.AreEqual(PieceColor.White, f6.PieceColor);
+            Assert.AreEqual(PieceColor.None, d5.PieceColor);
+        }
+        
+        [Category("Knight Rule")]
+        [Test]
+        public void Play_KnightD5D6_NotAllowedKnightRemainsAtD5()
+        {
+            Board board = Board.CreateBoard();
+            board.PlacePiece(Piece.Knight, PieceColor.White, "D5");
+            board.Play("D5D6");
+            SquareInfo d6 = board.GetSquareInfo("D6");
+            SquareInfo d5 = board.GetSquareInfo("D5");
+
+            Assert.AreEqual(Piece.None, d6.Piece);
+            Assert.AreEqual(PieceColor.White, d5.PieceColor);
+            Assert.AreEqual(Piece.Knight, d5.Piece);
         }
     }
 }
